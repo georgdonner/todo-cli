@@ -1,9 +1,10 @@
 import os, sys
 from datetime import datetime, timedelta, timezone
+from helpers.token import get_token
 from todoist.api import TodoistAPI
 from colorama import Fore
 
-api = TodoistAPI(os.environ['TODOIST_TOKEN'])
+api = TodoistAPI(get_token())
 api.sync()
 
 def list_items(args):
