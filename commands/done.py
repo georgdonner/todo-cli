@@ -19,7 +19,7 @@ def item_done(args):
         set_done(done[0])
         api.commit()
     else:
-        select_items(items)
+        select_items(done)
         api.commit()
 
 def print_items(items):
@@ -48,7 +48,7 @@ def select_items(items):
         print(message)
     select_input = input('Please select the ones you want to mark as done: ')
     if select_input == '':
-        sys.exit('None deleted')
+        sys.exit('None marked as done')
     indexes = select_input.split(',')
     for index_string in indexes:
         try:
