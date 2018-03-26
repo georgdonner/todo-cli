@@ -1,10 +1,10 @@
 import argparse, os, sys
 
 from colorama import init
-from commands.add import add_item
-from commands.done import item_done
-from commands.list import list_items
-from helpers.defaultparser import set_default_subparser
+from todo.commands.add import add_item
+from todo.commands.done import item_done
+from todo.commands.list import list_items
+from todo.helpers.defaultparser import set_default_subparser
 
 init()
 

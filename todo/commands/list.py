@@ -1,6 +1,6 @@
 import os, sys
 from datetime import datetime, timedelta, timezone
-from helpers.token import get_token
+from todo.helpers.token import get_token
 from todoist.api import TodoistAPI
 from colorama import Fore
 
