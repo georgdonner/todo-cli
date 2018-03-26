@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
   name='todo-cli-todoist',
-  version='1.1.0',
+  version='1.1.1',
   description='A CLI for managing Todoist tasks.',
   author='Georg Donner',
   url='https://github.com/georgdonner/todo-cli',

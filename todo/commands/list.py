@@ -16,13 +16,30 @@ def list_items(args):
             items = [item for item in items if item['project_id'] == project_id]
         else:
             sys.exit('Project not found')
-    print_items(items)
+    sorted_items = sort_items(items)
+    print_items(sorted_items)
+
+def get_date(date_string):
+    return datetime.strptime(date_string, '%a %d %b %Y %H:%M:%S %z')
+
+def sort_items(items):
+    due = [] # items with a due date
+    not_due = []
+    for item in items:
+        if item['due_date_utc']:
+            due.append(item)
+        else:
+            not_due.append(item)
+    due.sort(key=lambda item: get_date(item['due_date_utc']))
+    not_due.sort(key=lambda item: get_date(item['date_added']), reverse=True)
+    due.extend(not_due)
+    return due
 
 def print_items(items):
     for item in items:
         line = Fore.RESET + item['content']
         if item['due_date_utc']:
-            due = datetime.strptime(item['due_date_utc'], '%a %d %b %Y %H:%M:%S %z')
+            due = get_date(item['due_date_utc'])
             if (due - datetime.now(timezone.utc)) < timedelta(1):
                 line += Fore.RED
             elif (due - datetime.now(timezone.utc)) < timedelta(3):
